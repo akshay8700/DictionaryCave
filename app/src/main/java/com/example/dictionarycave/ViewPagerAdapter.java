@@ -29,7 +29,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
-    // TODO: 29-06-2022 place names according to position on tabs
     @Override
     public CharSequence getPageTitle(int position) {
         if(position == 0){
