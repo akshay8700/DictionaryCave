@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".fragment3">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Tab 3"
-        android:textSize="50dp"
-        android:gravity="center"/>
+        android:id="@+id/swipeRefresh3">
+        <WebView
+            android:id="@+id/webView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </FrameLayout>

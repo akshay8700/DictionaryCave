@@ -32,11 +32,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         if(position == 0){
-            return "One";
+            return "Oxford Dictionary";
         } else if(position == 1){
-            return "Two";
+            return "Hindi Dictionary";
         } else{
-            return "Three";
+            return "Collins Dictionary";
         }
     }
 }
