@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.webkit.WebViewClient;
 
 public class fragment3 extends Fragment {
 
+    public SwipeRefreshLayout swipeRefreshLayout;
     WebView webView3;
 
     public fragment3() {
@@ -26,6 +28,9 @@ public class fragment3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myView = inflater.inflate(R.layout.fragment_fragment3, container, false);
+
+        // swipe to refresh
+        swipeRefreshLayout = myView.findViewById(R.id.swipeRefresh3);
         getWebView(myView);
         return myView;
     }
@@ -35,7 +40,21 @@ public class fragment3 extends Fragment {
         webView3 = view.findViewById(R.id.webView3);
         String url = "https://www.collinsdictionary.com/dictionary/english/happiness";
         webView3.loadUrl(url);
-        webView3.setWebViewClient(new WebViewClient());
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                webView3.loadUrl(url);
+            }
+        });
+
+        webView3.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         WebSettings webSettings = webView3.getSettings();
         webSettings.setJavaScriptEnabled(true);

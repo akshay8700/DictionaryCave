@@ -34,6 +34,7 @@ public class fragment1 extends Fragment {
         swipeRefreshLayout = myView.findViewById(R.id.swipeRefresh);
 
         getWebView(myView);
+
         return myView;
     }
 
@@ -46,7 +47,7 @@ public class fragment1 extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                webView1.reload();
+                webView1.loadUrl(url);
             }
         });
 

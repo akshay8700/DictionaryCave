@@ -40,7 +40,23 @@ public class fragment2 extends Fragment {
         webView2 = view.findViewById(R.id.webView2);
         String url = "https://dict.hinkhoj.com/shabdkhoj.php?word=happiness&ie=UTF-8";
         webView2.loadUrl(url);
-        webView2.setWebViewClient(new WebViewClient());
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                webView2.loadUrl(url);
+            }
+        });
+
+        webView2.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                //Swipe to refresh
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         WebSettings webSettings = webView2.getSettings();
         webSettings.setJavaScriptEnabled(true);

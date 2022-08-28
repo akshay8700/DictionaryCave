@@ -8,20 +8,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements ConnectionReceiver.ReceiverListener {
 
+    public FloatingActionButton fabMagTab;
     public ConstraintLayout layout;
 
     public TabLayout tabLayout;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionReceive
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        fabMagTab = findViewById(R.id.fabMagTap);
         layout = findViewById(R.id.layoutMain);
 
         tabLayout = findViewById(R.id.tabLayout);
@@ -41,6 +47,29 @@ public class MainActivity extends AppCompatActivity implements ConnectionReceive
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         checkConnection();
+        magTab();
+        startNewActivity(getApplicationContext(), "pakage name put here");
+    }
+
+    // Launching Magtap
+    public void startNewActivity(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent != null) {
+            // We found the activity now start the activity
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, "Please! Install MagTap from playstore", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void magTab() {
+        fabMagTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void checkConnection() {
