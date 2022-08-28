@@ -1,10 +1,7 @@
 package com.example.dictionarycave;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActionBarContextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
@@ -13,10 +10,8 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,27 +42,26 @@ public class MainActivity extends AppCompatActivity implements ConnectionReceive
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         checkConnection();
-        magTab();
-        startNewActivity(getApplicationContext(), "pakage name put here");
+        floatingButton();
     }
 
     // Launching Magtap
-    public void startNewActivity(Context context, String packageName) {
-        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+    public void startNewActivity(String packageName) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage(packageName);
         if (intent != null) {
             // We found the activity now start the activity
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            startActivity(intent);
         } else {
-            Toast.makeText(context, "Please! Install MagTap from playstore", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please! Install MagTap from playstore", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void magTab() {
+    // click on floating button to open magtap
+    public void floatingButton() {
         fabMagTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startNewActivity("com.google.android.googlequicksearchbox");
             }
         });
     }
