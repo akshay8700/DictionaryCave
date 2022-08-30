@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionReceive
         fabMagTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startNewActivity("com.google.android.googlequicksearchbox");
+                startNewActivity("com.olm.magtapp");
             }
         });
     }
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionReceive
         showSnackBar(isConnected);
     }
 
+    // No internet information
     private void showSnackBar(boolean isConnected) {
 
         // initialize color and message
