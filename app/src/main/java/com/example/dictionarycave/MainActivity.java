@@ -21,6 +21,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements ConnectionReceiver.ReceiverListener {
 
+    // v4
     public FloatingActionButton fabMagTab;
     public ConstraintLayout layout;
 
